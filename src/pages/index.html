@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- @include head title="Wedding Photography in Chennai" description="The Memory Conservatory — wedding photography from Chennai, across South India and beyond. Weddings preserved as heirlooms, not just photographed." -->
+
+  <!-- If JavaScript never runs, nothing may stay invisible. -->
+  <noscript>
+    <style>
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .hero__noscript { display: block !important; }
+    </style>
+  </noscript>
+</head>
+
+<body>
+
+  <!-- @include header active="home" -->
+
+  <main id="main">
+
+    <!-- =====================================================================
+         HERO
+         The image(s), colour mode and carousel timing all come from
+         preferences.js — see public/assets/js/preferences.js. The markup below
+         is only the frame; hero.js fills the media layer.
+         ================================================================== -->
+    <section class="hero" data-hero aria-label="Introduction">
+
+      <div class="hero__media" data-hero-media>
+        <!-- Slides are inserted here from preferences.imageSrcListForCarousel.
+             This static fallback shows only when JavaScript is unavailable. -->
+        <noscript>
+          <div class="hero__slide is-active">
+            <img class="hero__img" src="/assets/img/hero/hero-01-bouquet-goldenhour.jpg" alt="">
+          </div>
+        </noscript>
+      </div>
+
+      <div class="hero__scrim" aria-hidden="true"></div>
+      <div class="hero__grain" aria-hidden="true"></div>
+      <!-- Last layer before the content: a flat black veil sitting directly
+           beneath the headline, buttons and carousel controls. -->
+      <div class="hero__veil" aria-hidden="true"></div>
+
+      <div class="shell hero__inner">
+        <div class="hero__copy">
+          <h1 class="hero__title">
+            Where a wedding day becomes an <em>heirloom</em>
+          </h1>
+
+          <p class="hero__lede">
+            <!-- TODO:CLIENT replace with the client's own opening line -->
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn btn-cream" href="/gallery">View the Gallery</a>
+            <a class="btn btn-outline" href="/contact">Enquire for your date</a>
+          </div>
+        </div>
+
+        <!-- Carousel controls. In the normal flow, directly after the copy, so
+             they can never overlap the buttons above no matter how tall the
+             text runs. Being inside .shell they also inherit the page gutter,
+             which is what keeps them aligned with the headline and buttons.
+             Hidden until hero.js confirms more than one image is configured;
+             removed from the DOM entirely when only one is. -->
+        <div class="hero__controls" data-hero-controls hidden>
+          <ul class="hero__dots" data-hero-dots></ul>
+
+          <div class="hero__arrows">
+            <button class="hero__arrow" type="button" data-hero-prev>
+              <span class="sr-only">Previous image</span>
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                <path d="M10 2 4 8l6 6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="hero__arrow" type="button" data-hero-next>
+              <span class="sr-only">Next image</span>
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                <path d="m6 2 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+
+          <p class="hero__counter">
+            <strong data-hero-current>01</strong> &nbsp;/&nbsp; <span data-hero-total>01</span>
+          </p>
+        </div>
+      </div>
+
+      <a class="hero__cue" href="#statement" aria-label="Scroll to continue">Scroll</a>
+
+    </section>
+
+
+    <!-- =====================================================================
+         ABOUT — editorial spread
+         Two portrait images bleeding off opposite edges at different vertical
+         offsets, a caps display headline with an italic connector, and a
+         narrow serif column between them. The asymmetry is the whole effect:
+         a symmetric version of this layout reads as a template.
+         ================================================================== -->
+    <section class="section section--white about" id="statement">
+      <div class="about__grid">
+
+        <figure class="about__figure about__figure--right reveal">
+          <img src="/assets/img/about/about-right-scenic.jpg"
+               alt="A couple on the shore, the bride's veil trailing behind her"
+               loading="lazy" decoding="async">
+        </figure>
+
+        <header class="about__head reveal">
+          <!-- Same treatment as every other section title: one size
+               throughout, italic gilt on the emphasis, and a single explicit
+               break so it always sets as two lines. -->
+          <h2 class="section__title about__title">
+            A wedding is one day. <br>The <em>photographs</em> are forever.
+          </h2>
+        </header>
+
+        <figure class="about__figure about__figure--left reveal">
+          <img src="/assets/img/about/about-left-portrait.jpg"
+               alt="Newlyweds kissing as guests throw petals"
+               loading="lazy" decoding="async">
+        </figure>
+
+        <div class="about__body reveal">
+          <!-- TODO:CLIENT all copy in this section is placeholder -->
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo consequat.
+          </p>
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p class="signature">&mdash; Placeholder Name, Founder</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================================
+         THE ARCHIVE — full-bleed square tile grid
+         Edge to edge, hairline gutters, 5 columns stepping down to 2. The
+         images do the talking; the only chrome is a heading above them.
+         ================================================================== -->
+    <section class="section section--white tile-section">
+      <div class="shell tile-section__head reveal">
+        <p class="eyebrow eyebrow--ruled eyebrow--centred">The Archive</p>
+        <h2 class="section__title">Some of the most <em>iconic</em> wedding images</h2>
+      </div>
+
+      <!-- TODO:CLIENT every tile below is stock placeholder imagery -->
+      <div class="tile-grid reveal">
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g01-golden-hour-bouquet.jpg" alt="A couple holding a bouquet in golden evening light"
+               style="--focal:50% 50%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g02-mandap-ceremony.jpg" alt="A wedding ceremony beneath a decorated mandap"
+               style="--focal:50% 55%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g03-veil-shore.jpg" alt="A couple on the shore, the bride's veil trailing behind her"
+               style="--focal:50% 40%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g04-confetti-exit.jpg" alt="Guests showering confetti as the couple leave the ceremony"
+               style="--focal:50% 45%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g05-confetti-kiss.jpg" alt="Newlyweds kissing as petals fall around them"
+               style="--focal:50% 35%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g06-palms-dusk.jpg" alt="A couple walking beneath palms at dusk"
+               style="--focal:50% 40%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g07-ring-detail.jpg" alt="Wedding rings on the hands of a newly married couple"
+               style="--focal:50% 50%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g08-balloon-release.jpg" alt="A balloon release at a wedding reception"
+               style="--focal:50% 45%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g09-lakeside-couple.jpg" alt="A couple beside a lake in autumn light"
+               style="--focal:50% 40%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g10-gown-detail.jpg" alt="A wedding gown laid out before the ceremony"
+               style="--focal:50% 45%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g11-bouquet-close.jpg" alt="A bridal bouquet held close"
+               style="--focal:50% 50%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g12-reception-table.jpg" alt="A reception table set for the wedding breakfast"
+               style="--focal:50% 50%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g13-floral-arch.jpg" alt="Flowers and drapery on a ceremony arch"
+               style="--focal:50% 50%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g14-joined-hands.jpg" alt="The couple's joined hands after the ceremony"
+               style="--focal:50% 50%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g15-ceremony-pavilion.jpg" alt="An outdoor ceremony pavilion set with an aisle"
+               style="--focal:50% 45%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+      </div>
+    </section>
+
+
+    <!-- =====================================================================
+         SIGNATURE WORK
+         ================================================================== -->
+    <section class="section section--white">
+      <div class="shell-wide">
+
+        <div style="max-width:var(--container-prose)" class="reveal">
+          <p class="eyebrow eyebrow--ruled">Selected Work</p>
+          <h2 class="section__title">Moments, kept <em>exactly</em> as they happened</h2>
+        </div>
+
+        <div class="work-grid" style="margin-top:clamp(2.5rem,5vw,4rem)">
+          <!-- TODO:CLIENT replace all images and captions with real work -->
+          <a class="work-card reveal" href="/gallery">
+            <img src="/assets/img/work/work-01-ceremony-confetti.jpg"
+                 alt="Newlyweds kissing as guests throw petals" loading="lazy" decoding="async">
+            <span class="work-card__veil" aria-hidden="true"></span>
+            <span class="work-card__caption">
+              <span class="work-card__place">Lorem &amp; Ipsum</span>
+              <span class="work-card__meta">Ceremony</span>
+            </span>
+          </a>
+
+          <a class="work-card reveal" href="/gallery" style="--reveal-delay:100ms">
+            <img src="/assets/img/work/work-02-portraits-dusk.jpg"
+                 alt="A couple walking beneath palms at dusk" loading="lazy" decoding="async">
+            <span class="work-card__veil" aria-hidden="true"></span>
+            <span class="work-card__caption">
+              <span class="work-card__place">Dolor &amp; Amet</span>
+              <span class="work-card__meta">Portraits</span>
+            </span>
+          </a>
+
+          <a class="work-card reveal" href="/gallery" style="--reveal-delay:200ms">
+            <img src="/assets/img/work/work-03-details-rings.jpg"
+                 alt="Wedding rings on the hands of a newly married couple" loading="lazy" decoding="async">
+            <span class="work-card__veil" aria-hidden="true"></span>
+            <span class="work-card__caption">
+              <span class="work-card__place">Consectetur</span>
+              <span class="work-card__meta">Details</span>
+            </span>
+          </a>
+
+          <a class="work-card reveal" href="/gallery" style="--reveal-delay:300ms">
+            <img src="/assets/img/work/work-04-couple-lakeside.jpg"
+                 alt="A couple beside a lake in autumn light" loading="lazy" decoding="async">
+            <span class="work-card__veil" aria-hidden="true"></span>
+            <span class="work-card__caption">
+              <span class="work-card__place">Adipiscing</span>
+              <span class="work-card__meta">Couple</span>
+            </span>
+          </a>
+        </div>
+
+        <p class="reveal" style="margin-top:clamp(2rem,4vw,3rem)">
+          <a class="btn btn-blue" href="/gallery">See the full gallery</a>
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================================
+         PROCESS TEASER
+         ================================================================== -->
+    <section class="section section--blue" id="process">
+      <div class="shell">
+
+        <div style="max-width:var(--container-prose)" class="reveal">
+          <p class="eyebrow eyebrow--ruled">How It Works</p>
+          <h2 class="section__title">Unhurried, from first note<br>to final <em>album</em></h2>
+        </div>
+
+        <!-- TODO:CLIENT the three steps below are placeholder copy -->
+        <div class="step-grid">
+          <div class="step reveal">
+            <p class="step__num">01</p>
+            <h3 class="step__title">Say hello</h3>
+            <p class="step__body">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore.
+            </p>
+          </div>
+          <div class="step reveal" style="--reveal-delay:120ms">
+            <p class="step__num">02</p>
+            <h3 class="step__title">Plan the days</h3>
+            <p class="step__body">
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </div>
+          <div class="step reveal" style="--reveal-delay:240ms">
+            <p class="step__num">03</p>
+            <h3 class="step__title">Receive the archive</h3>
+            <p class="step__body">
+              Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur.
+            </p>
+          </div>
+        </div>
+
+        <p class="reveal" style="margin-top:clamp(2.5rem,5vw,3.5rem)">
+          <a class="btn btn-cream" href="/about#process">Read the full process</a>
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================================
+         TESTIMONIALS
+         The client asked for these on the home page and at the end of every
+         gallery page, so they live in partials/testimonials.html.
+         ================================================================== -->
+    <!-- @include testimonials -->
+
+
+    <!-- =====================================================================
+         CLOSING CALL TO ACTION
+         ================================================================== -->
+    <section class="section cta">
+      <img class="cta__bg" src="/assets/img/work/cta-backdrop.jpg" alt=""
+           loading="lazy" decoding="async" aria-hidden="true">
+      <div class="shell cta__inner">
+        <p class="eyebrow eyebrow--ruled eyebrow--centred reveal">Enquiries</p>
+        <h2 class="section__title reveal" style="color:var(--color-white)">
+          Tell us about <em>your day</em>
+        </h2>
+        <p class="lede reveal" style="margin:1.5rem auto 0; color:color-mix(in srgb, var(--color-white) 78%, transparent)">
+          Dates for the coming season are limited. Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit.
+        </p>
+        <p class="reveal" style="margin-top:2.25rem">
+          <a class="btn btn-cream" href="/contact">Start an enquiry</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- @include footer -->
+
+  <script type="module" src="/assets/js/main.js"></script>
+  <script type="module" src="/assets/js/hero.js"></script>
+</body>
+</html>

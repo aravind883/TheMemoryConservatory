@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+  <title>Wedding Photography in Chennai — The Memory Conservatory</title>
+  <meta name="description" content="The Memory Conservatory — wedding photography from Chennai, across South India and beyond. Weddings preserved as heirlooms, not just photographed.">
+
+  <!-- Icons are the official TMC monogram on the Deep Blue brand ground. -->
+  <link rel="icon" href="/assets/brand/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/assets/brand/favicon-512.png" sizes="512x512" type="image/png">
+  <link rel="apple-touch-icon" href="/assets/brand/apple-touch-icon.png">
+  <meta name="theme-color" content="#144c78">
+
+  <!-- Open Graph — TODO:CLIENT replace og:image with the client's own artwork -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="The Memory Conservatory">
+  <meta property="og:title" content="Wedding Photography in Chennai — The Memory Conservatory">
+  <meta property="og:description" content="The Memory Conservatory — wedding photography from Chennai, across South India and beyond. Weddings preserved as heirlooms, not just photographed.">
+  <meta property="og:image" content="/assets/img/hero/hero-01-bouquet-goldenhour.jpg"><!-- TODO:CLIENT -->
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Self-hosted fonts: preloaded so the display face is ready before first
+       paint, which matters most on the hero headline. -->
+  <link rel="preload" href="/assets/fonts/playfair-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/poppins-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+  <link rel="stylesheet" href="/assets/css/site.css">
+
+  <!-- If JavaScript never runs, nothing may stay invisible. -->
+  <noscript>
+    <style>
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .hero__noscript { display: block !important; }
+    </style>
+  </noscript>
+</head>
+
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="siteHeader" data-scrolled="false">
+    <div class="shell site-header__inner">
+
+      <!-- OFFICIAL LOGO — supplied by the client. Do not recolour, redraw or
+           letterspace this; the guidelines forbid altering the logo. The cream
+           cut is used here because the bar sits on the hero photograph and, once
+           scrolled, on Deep Blue. public/assets/brand/wordmark-blue.png is the
+           cut for light grounds. -->
+      <a class="brand" href="/" aria-label="The Memory Conservatory — home">
+        <img class="brand__logo" src="/assets/brand/wordmark-cream.png"
+             alt="The Memory Conservatory" width="900" height="217">
+      </a>
+
+      <nav class="site-nav" data-nav-active="home" aria-label="Primary">
+        <!-- The Process and Testimonials are sections of the home page, not pages
+             of their own, so they are fragment links. Written as "/#process"
+             rather than "#process" so they still work from /about, /faq and the
+             enquiry form — a bare fragment there would look for a section that
+             page does not have. -->
+        <div class="nav-desktop">
+          <a class="nav-desktop__link" data-nav="home"         href="/">Home</a>
+          <a class="nav-desktop__link" data-nav="about"        href="/about">About</a>
+          <a class="nav-desktop__link" data-nav="gallery"      href="/gallery">Gallery</a>
+          <a class="nav-desktop__link" data-nav="process"      href="/#process">The Process</a>
+          <a class="nav-desktop__link" data-nav="testimonials" href="/#testimonials">Testimonials</a>
+          <a class="nav-desktop__link" data-nav="faq"          href="/faq">FAQ</a>
+          <a class="btn btn-outline" href="/contact">Enquire</a>
+        </div>
+
+        <!-- The label is an attribute, not a child element: the bars are targeted
+             with :nth-child(), and an extra span in here silently shifts every
+             index by one and breaks the close icon. -->
+        <button class="nav-toggle" id="navToggle" type="button"
+                aria-expanded="false" aria-controls="navMobile" aria-label="Menu">
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+          <span class="nav-toggle__bar" aria-hidden="true"></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="nav-mobile" id="navMobile" data-open="false" aria-label="Primary" role="dialog" aria-modal="true">
+    <ul class="nav-mobile__list">
+      <li><a class="nav-mobile__link" href="/"><span class="nav-mobile__index">01</span>Home</a></li>
+      <li><a class="nav-mobile__link" href="/about"><span class="nav-mobile__index">02</span>About</a></li>
+      <li><a class="nav-mobile__link" href="/gallery"><span class="nav-mobile__index">03</span>Gallery</a></li>
+      <li><a class="nav-mobile__link" href="/#process"><span class="nav-mobile__index">04</span>The Process</a></li>
+      <li><a class="nav-mobile__link" href="/#testimonials"><span class="nav-mobile__index">05</span>Testimonials</a></li>
+      <li><a class="nav-mobile__link" href="/faq"><span class="nav-mobile__index">06</span>FAQ</a></li>
+      <li><a class="nav-mobile__link" href="/contact"><span class="nav-mobile__index">07</span>Enquire</a></li>
+    </ul>
+    <div class="nav-mobile__foot">
+      <p>Chennai, Tamil Nadu &middot; available across South India and beyond</p>
+      <a class="whatsapp-inline" data-whatsapp data-enabled="false" href="#" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.86 9.86 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.87.85-.87 2.07s.89 2.4 1.02 2.57c.12.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+        Message on WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <main id="main">
+
+    <!-- =====================================================================
+         HERO
+         The image(s), colour mode and carousel timing all come from
+         preferences.js — see public/assets/js/preferences.js. The markup below
+         is only the frame; hero.js fills the media layer.
+         ================================================================== -->
+    <section class="hero" data-hero aria-label="Introduction">
+
+      <div class="hero__media" data-hero-media>
+        <!-- Slides are inserted here from preferences.imageSrcListForCarousel.
+             This static fallback shows only when JavaScript is unavailable. -->
+        <noscript>
+          <div class="hero__slide is-active">
+            <img class="hero__img" src="/assets/img/hero/hero-01-bouquet-goldenhour.jpg" alt="">
+          </div>
+        </noscript>
+      </div>
+
+      <div class="hero__scrim" aria-hidden="true"></div>
+      <div class="hero__grain" aria-hidden="true"></div>
+      <!-- Last layer before the content: a flat black veil sitting directly
+           beneath the headline, buttons and carousel controls. -->
+      <div class="hero__veil" aria-hidden="true"></div>
+
+      <div class="shell hero__inner">
+        <div class="hero__copy">
+          <h1 class="hero__title">
+            Where a wedding day becomes an <em>heirloom</em>
+          </h1>
+
+          <p class="hero__lede">
+            <!-- TODO:CLIENT replace with the client's own opening line -->
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn btn-cream" href="/gallery">View the Gallery</a>
+            <a class="btn btn-outline" href="/contact">Enquire for your date</a>
+          </div>
+        </div>
+
+        <!-- Carousel controls. In the normal flow, directly after the copy, so
+             they can never overlap the buttons above no matter how tall the
+             text runs. Being inside .shell they also inherit the page gutter,
+             which is what keeps them aligned with the headline and buttons.
+             Hidden until hero.js confirms more than one image is configured;
+             removed from the DOM entirely when only one is. -->
+        <div class="hero__controls" data-hero-controls hidden>
+          <ul class="hero__dots" data-hero-dots></ul>
+
+          <div class="hero__arrows">
+            <button class="hero__arrow" type="button" data-hero-prev>
+              <span class="sr-only">Previous image</span>
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                <path d="M10 2 4 8l6 6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="hero__arrow" type="button" data-hero-next>
+              <span class="sr-only">Next image</span>
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                <path d="m6 2 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+
+          <p class="hero__counter">
+            <strong data-hero-current>01</strong> &nbsp;/&nbsp; <span data-hero-total>01</span>
+          </p>
+        </div>
+      </div>
+
+      <a class="hero__cue" href="#statement" aria-label="Scroll to continue">Scroll</a>
+
+    </section>
+
+
+    <!-- =====================================================================
+         ABOUT — editorial spread
+         Two portrait images bleeding off opposite edges at different vertical
+         offsets, a caps display headline with an italic connector, and a
+         narrow serif column between them. The asymmetry is the whole effect:
+         a symmetric version of this layout reads as a template.
+         ================================================================== -->
+    <section class="section section--white about" id="statement">
+      <div class="about__grid">
+
+        <figure class="about__figure about__figure--right reveal">
+          <img src="/assets/img/about/about-right-scenic.jpg"
+               alt="A couple on the shore, the bride's veil trailing behind her"
+               loading="lazy" decoding="async">
+        </figure>
+
+        <header class="about__head reveal">
+          <!-- Same treatment as every other section title: one size
+               throughout, italic gilt on the emphasis, and a single explicit
+               break so it always sets as two lines. -->
+          <h2 class="section__title about__title">
+            A wedding is one day. <br>The <em>photographs</em> are forever.
+          </h2>
+        </header>
+
+        <figure class="about__figure about__figure--left reveal">
+          <img src="/assets/img/about/about-left-portrait.jpg"
+               alt="Newlyweds kissing as guests throw petals"
+               loading="lazy" decoding="async">
+        </figure>
+
+        <div class="about__body reveal">
+          <!-- TODO:CLIENT all copy in this section is placeholder -->
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+            commodo consequat.
+          </p>
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+            dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <p class="signature">&mdash; Placeholder Name, Founder</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================================
+         THE ARCHIVE — full-bleed square tile grid
+         Edge to edge, hairline gutters, 5 columns stepping down to 2. The
+         images do the talking; the only chrome is a heading above them.
+         ================================================================== -->
+    <section class="section section--white tile-section">
+      <div class="shell tile-section__head reveal">
+        <p class="eyebrow eyebrow--ruled eyebrow--centred">The Archive</p>
+        <h2 class="section__title">Some of the most <em>iconic</em> wedding images</h2>
+      </div>
+
+      <!-- TODO:CLIENT every tile below is stock placeholder imagery -->
+      <div class="tile-grid reveal">
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g01-golden-hour-bouquet.jpg" alt="A couple holding a bouquet in golden evening light"
+               style="--focal:50% 50%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g02-mandap-ceremony.jpg" alt="A wedding ceremony beneath a decorated mandap"
+               style="--focal:50% 55%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g03-veil-shore.jpg" alt="A couple on the shore, the bride's veil trailing behind her"
+               style="--focal:50% 40%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g04-confetti-exit.jpg" alt="Guests showering confetti as the couple leave the ceremony"
+               style="--focal:50% 45%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g05-confetti-kiss.jpg" alt="Newlyweds kissing as petals fall around them"
+               style="--focal:50% 35%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g06-palms-dusk.jpg" alt="A couple walking beneath palms at dusk"
+               style="--focal:50% 40%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g07-ring-detail.jpg" alt="Wedding rings on the hands of a newly married couple"
+               style="--focal:50% 50%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g08-balloon-release.jpg" alt="A balloon release at a wedding reception"
+               style="--focal:50% 45%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g09-lakeside-couple.jpg" alt="A couple beside a lake in autumn light"
+               style="--focal:50% 40%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g10-gown-detail.jpg" alt="A wedding gown laid out before the ceremony"
+               style="--focal:50% 45%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g11-bouquet-close.jpg" alt="A bridal bouquet held close"
+               style="--focal:50% 50%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g12-reception-table.jpg" alt="A reception table set for the wedding breakfast"
+               style="--focal:50% 50%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g13-floral-arch.jpg" alt="Flowers and drapery on a ceremony arch"
+               style="--focal:50% 50%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g14-joined-hands.jpg" alt="The couple's joined hands after the ceremony"
+               style="--focal:50% 50%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+        <figure class="tile-grid__item">
+          <img src="/assets/img/gallery/g15-ceremony-pavilion.jpg" alt="An outdoor ceremony pavilion set with an aisle"
+               style="--focal:50% 45%" loading="lazy" decoding="async"
+               sizes="(max-width: 36rem) 50vw, (max-width: 48rem) 33vw, (max-width: 62rem) 25vw, 20vw">
+        </figure>
+      </div>
+    </section>
+
+
+    <!-- =====================================================================
+         SIGNATURE WORK
+         ================================================================== -->
+    <section class="section section--white">
+      <div class="shell-wide">
+
+        <div style="max-width:var(--container-prose)" class="reveal">
+          <p class="eyebrow eyebrow--ruled">Selected Work</p>
+          <h2 class="section__title">Moments, kept <em>exactly</em> as they happened</h2>
+        </div>
+
+        <div class="work-grid" style="margin-top:clamp(2.5rem,5vw,4rem)">
+          <!-- TODO:CLIENT replace all images and captions with real work -->
+          <a class="work-card reveal" href="/gallery">
+            <img src="/assets/img/work/work-01-ceremony-confetti.jpg"
+                 alt="Newlyweds kissing as guests throw petals" loading="lazy" decoding="async">
+            <span class="work-card__veil" aria-hidden="true"></span>
+            <span class="work-card__caption">
+              <span class="work-card__place">Lorem &amp; Ipsum</span>
+              <span class="work-card__meta">Ceremony</span>
+            </span>
+          </a>
+
+          <a class="work-card reveal" href="/gallery" style="--reveal-delay:100ms">
+            <img src="/assets/img/work/work-02-portraits-dusk.jpg"
+                 alt="A couple walking beneath palms at dusk" loading="lazy" decoding="async">
+            <span class="work-card__veil" aria-hidden="true"></span>
+            <span class="work-card__caption">
+              <span class="work-card__place">Dolor &amp; Amet</span>
+              <span class="work-card__meta">Portraits</span>
+            </span>
+          </a>
+
+          <a class="work-card reveal" href="/gallery" style="--reveal-delay:200ms">
+            <img src="/assets/img/work/work-03-details-rings.jpg"
+                 alt="Wedding rings on the hands of a newly married couple" loading="lazy" decoding="async">
+            <span class="work-card__veil" aria-hidden="true"></span>
+            <span class="work-card__caption">
+              <span class="work-card__place">Consectetur</span>
+              <span class="work-card__meta">Details</span>
+            </span>
+          </a>
+
+          <a class="work-card reveal" href="/gallery" style="--reveal-delay:300ms">
+            <img src="/assets/img/work/work-04-couple-lakeside.jpg"
+                 alt="A couple beside a lake in autumn light" loading="lazy" decoding="async">
+            <span class="work-card__veil" aria-hidden="true"></span>
+            <span class="work-card__caption">
+              <span class="work-card__place">Adipiscing</span>
+              <span class="work-card__meta">Couple</span>
+            </span>
+          </a>
+        </div>
+
+        <p class="reveal" style="margin-top:clamp(2rem,4vw,3rem)">
+          <a class="btn btn-blue" href="/gallery">See the full gallery</a>
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================================
+         PROCESS TEASER
+         ================================================================== -->
+    <section class="section section--blue" id="process">
+      <div class="shell">
+
+        <div style="max-width:var(--container-prose)" class="reveal">
+          <p class="eyebrow eyebrow--ruled">How It Works</p>
+          <h2 class="section__title">Unhurried, from first note<br>to final <em>album</em></h2>
+        </div>
+
+        <!-- TODO:CLIENT the three steps below are placeholder copy -->
+        <div class="step-grid">
+          <div class="step reveal">
+            <p class="step__num">01</p>
+            <h3 class="step__title">Say hello</h3>
+            <p class="step__body">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore.
+            </p>
+          </div>
+          <div class="step reveal" style="--reveal-delay:120ms">
+            <p class="step__num">02</p>
+            <h3 class="step__title">Plan the days</h3>
+            <p class="step__body">
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </div>
+          <div class="step reveal" style="--reveal-delay:240ms">
+            <p class="step__num">03</p>
+            <h3 class="step__title">Receive the archive</h3>
+            <p class="step__body">
+              Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur.
+            </p>
+          </div>
+        </div>
+
+        <p class="reveal" style="margin-top:clamp(2.5rem,5vw,3.5rem)">
+          <a class="btn btn-cream" href="/about#process">Read the full process</a>
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================================
+         TESTIMONIALS
+         The client asked for these on the home page and at the end of every
+         gallery page, so they live in partials/testimonials.html.
+         ================================================================== -->
+    <!-- Testimonials.
+
+         The client asked for these on the home page and at the end of every gallery
+         page, so they live in a partial: the reviews exist once, and a gallery page
+         adds them with a single include line.
+
+         Every review below is the client's own, verbatim. Mechanical corrections
+         only — see PRELAUNCH-CHECKLIST.md for the list.
+
+         Usage, on its own line:   @include testimonials   (wrapped in an HTML comment)
+    -->
+    <section class="section section--white" id="testimonials">
+      <div class="shell">
+
+        <div style="max-width:var(--container-prose)" class="reveal">
+          <p class="eyebrow eyebrow--ruled">Testimonials</p>
+          <!-- TODO:CLIENT this heading is ours; the reviews are theirs. -->
+          <h2 class="section__title">In their <em>own words</em></h2>
+        </div>
+
+        <div class="testimonials reveal" data-testimonials>
+
+          <!-- A real scroll container. tabindex makes it keyboard-scrollable, which
+               a scrollable region needs in order to be reachable without a mouse. -->
+          <div class="testimonial-track" data-testimonial-track
+               tabindex="0" role="group" aria-label="Client testimonials, scrollable">
+
+            <blockquote class="testimonial">
+              <!-- A real button, not a click handler on the blockquote: this is
+                   what gives keyboard focus, Enter/Space and an announced label. -->
+              <button class="testimonial__open" type="button" data-testimonial-open>
+                <span class="sr-only">Read the full review from Hema Gowri</span>
+              </button>
+              <p class="testimonial__mark" aria-hidden="true">&ldquo;</p>
+              <p class="testimonial__body">
+                I booked The Memory Conservatory team for my wedding. Super friendly
+                team! They made us feel relaxed and guided us with poses, which made a
+                huge difference. The entire experience was fun and stress free. And they
+                didn&rsquo;t just take photos&mdash;they captured feelings. Both the
+                photography and videography were exceptional. The wedding film was
+                emotional and beautiful, especially thanks to Narayanaswamy and team.
+              </p>
+              <footer class="testimonial__by">Hema Gowri</footer>
+              <p class="testimonial__cue" aria-hidden="true">Read full review</p>
+            </blockquote>
+            <blockquote class="testimonial">
+              <!-- A real button, not a click handler on the blockquote: this is
+                   what gives keyboard focus, Enter/Space and an announced label. -->
+              <button class="testimonial__open" type="button" data-testimonial-open>
+                <span class="sr-only">Read the full review from Divya</span>
+              </button>
+              <p class="testimonial__mark" aria-hidden="true">&ldquo;</p>
+              <p class="testimonial__body">
+                Extremely talented and no nonsense person who will deliver exactly to
+                your needs. I am very happy with my brother&rsquo;s marriage album and my
+                parents&rsquo; 60th marriage function album. He gives a lot of space and
+                time for the bride and groom to settle in which is a rarity among
+                photographers. Cost efficiency is another boom. Thanks to the team for
+                being very polite and creative catering to all our expectations.
+                Professionalism at its best.
+              </p>
+              <footer class="testimonial__by">Divya</footer>
+              <p class="testimonial__cue" aria-hidden="true">Read full review</p>
+            </blockquote>
+            <blockquote class="testimonial">
+              <!-- A real button, not a click handler on the blockquote: this is
+                   what gives keyboard focus, Enter/Space and an announced label. -->
+              <button class="testimonial__open" type="button" data-testimonial-open>
+                <span class="sr-only">Read the full review from Aakash</span>
+              </button>
+              <p class="testimonial__mark" aria-hidden="true">&ldquo;</p>
+              <p class="testimonial__body">
+                We had the pleasure of working with The Memory Conservatory for our
+                wedding, and he did an outstanding job covering all our events. He was
+                incredibly understanding and flexible, ensuring both the bride and groom
+                were comfortable throughout the day. His work was exceptional across the
+                board, from the pre-wedding shoot to candid shots and the live stream.
+                Additionally, he was punctual and professional in every aspect. Highly
+                recommended!
+              </p>
+              <footer class="testimonial__by">Aakash</footer>
+              <p class="testimonial__cue" aria-hidden="true">Read full review</p>
+            </blockquote>
+            <blockquote class="testimonial">
+              <!-- A real button, not a click handler on the blockquote: this is
+                   what gives keyboard focus, Enter/Space and an announced label. -->
+              <button class="testimonial__open" type="button" data-testimonial-open>
+                <span class="sr-only">Read the full review from Thiviia</span>
+              </button>
+              <p class="testimonial__mark" aria-hidden="true">&ldquo;</p>
+              <p class="testimonial__body">
+                We flew in from Canada, and Narayana was incredibly accommodating with
+                our schedule and the entire booking process. He was so easy-going and
+                made us feel comfortable right away, which made working with him such a
+                great experience. He guided us naturally with posing and truly listened
+                to our ideas, asking for inspiration and making sure our vision was
+                captured. The picture quality and edits were exactly what we were
+                looking for&mdash;absolutely beautiful. He was super professional and
+                delivered everything within the timeframe he promised. We truly had such
+                an amazing experience and couldn&rsquo;t be happier with the results!
+              </p>
+              <footer class="testimonial__by">Thiviia</footer>
+              <p class="testimonial__cue" aria-hidden="true">Read full review</p>
+            </blockquote>
+            <blockquote class="testimonial">
+              <!-- A real button, not a click handler on the blockquote: this is
+                   what gives keyboard focus, Enter/Space and an announced label. -->
+              <button class="testimonial__open" type="button" data-testimonial-open>
+                <span class="sr-only">Read the full review from Priyanka</span>
+              </button>
+              <p class="testimonial__mark" aria-hidden="true">&ldquo;</p>
+              <p class="testimonial__body">
+                I booked Narayana Swamy to cover photos and videos for my engagement in
+                Chennai. His team is very kind, patient, humble and talented. They take
+                extreme care about planning for the event and are very accommodative of
+                our wishes for the special day. They delivered the photos and videos as
+                promised on the correct date and the output is fabulous. I&rsquo;m
+                extremely satisfied with his work. I recommend Narayana Swamy and his
+                team for all your special events, including weddings.
+              </p>
+              <footer class="testimonial__by">Priyanka</footer>
+              <p class="testimonial__cue" aria-hidden="true">Read full review</p>
+            </blockquote>
+            <blockquote class="testimonial">
+              <!-- A real button, not a click handler on the blockquote: this is
+                   what gives keyboard focus, Enter/Space and an announced label. -->
+              <button class="testimonial__open" type="button" data-testimonial-open>
+                <span class="sr-only">Read the full review from Niveditha</span>
+              </button>
+              <p class="testimonial__mark" aria-hidden="true">&ldquo;</p>
+              <p class="testimonial__body">
+                We never had any big expectations with the wedding photography&hellip;
+                All I said to Narayana Swamy was that this is going to be a celebration
+                and I want the photos to radiate that celebration&hellip; Right from the
+                pre wedding he made us feel comfortable, he was particular that the
+                photos shouldn&rsquo;t be an artificially choreographed one but should
+                flow, something that will speak what we naturally are&hellip; He gave us
+                that time and never rushed for the sake of completing the shoot&hellip;
+                He was very patient and tried to give us the best shots&hellip; When it
+                comes to candids, very few photographers capture the moments that you
+                know or you would have thought it would be nice if someone captures and
+                freezes this particular moment&hellip; Because moments and emotions
+                connected with it are very subjective&hellip; The Memory Conservatory is
+                one of the fews who does that with his genuine efforts&hellip; His team
+                is another bonus&hellip; He and his team reproduce what we exactly
+                need&hellip;
+              </p>
+              <footer class="testimonial__by">Niveditha</footer>
+              <p class="testimonial__cue" aria-hidden="true">Read full review</p>
+            </blockquote>
+            <blockquote class="testimonial">
+              <!-- A real button, not a click handler on the blockquote: this is
+                   what gives keyboard focus, Enter/Space and an announced label. -->
+              <button class="testimonial__open" type="button" data-testimonial-open>
+                <span class="sr-only">Read the full review from Tejas</span>
+              </button>
+              <p class="testimonial__mark" aria-hidden="true">&ldquo;</p>
+              <p class="testimonial__body">
+                There&rsquo;s something special about looking back at photographs and
+                reliving the moments. When it&rsquo;s something as special as your
+                wedding that becomes even more apparent. The photos that were taken were
+                not only immaculate but it captured the moments perfectly. The
+                professionalism was on point and it never felt like a chore being
+                photographed. I would highly recommend it!
+              </p>
+              <footer class="testimonial__by">Tejas</footer>
+              <p class="testimonial__cue" aria-hidden="true">Read full review</p>
+            </blockquote>
+            <blockquote class="testimonial">
+              <!-- A real button, not a click handler on the blockquote: this is
+                   what gives keyboard focus, Enter/Space and an announced label. -->
+              <button class="testimonial__open" type="button" data-testimonial-open>
+                <span class="sr-only">Read the full review from Tarun</span>
+              </button>
+              <p class="testimonial__mark" aria-hidden="true">&ldquo;</p>
+              <p class="testimonial__body">
+                The TMC team has done a stellar job with the photography for our event!
+                We were really happy with what they had delivered, especially with the
+                portrait solo and couple shots. The team is very understanding of the
+                event timelines and adapt quickly to meet our needs based on the changing
+                timelines. All in all, I would definitely recommend it!
+              </p>
+              <footer class="testimonial__by">Tarun</footer>
+              <p class="testimonial__cue" aria-hidden="true">Read full review</p>
+            </blockquote>
+            <blockquote class="testimonial">
+              <!-- A real button, not a click handler on the blockquote: this is
+                   what gives keyboard focus, Enter/Space and an announced label. -->
+              <button class="testimonial__open" type="button" data-testimonial-open>
+                <span class="sr-only">Read the full review from Shanmuga Raja</span>
+              </button>
+              <p class="testimonial__mark" aria-hidden="true">&ldquo;</p>
+              <p class="testimonial__body">
+                Narayana Swamy is a multi-talented, warm and professional gem. A
+                must-have for making your special moments immortal. Exceeded all
+                expectations! Possesses an innate talent to show up the most outstanding
+                shots. You won&rsquo;t ever regret having to call them to capture your
+                special moments.
+              </p>
+              <footer class="testimonial__by">Shanmuga Raja</footer>
+              <p class="testimonial__cue" aria-hidden="true">Read full review</p>
+            </blockquote>
+
+          </div>
+
+          <!-- The full review. Native <dialog>: showModal() supplies the focus
+               trap, the inert background, Esc-to-close and focus return, all of
+               which a hand-rolled div gets wrong. Filled by main.js from whichever
+               card was clicked, so the reviews are never duplicated in the markup. -->
+          <dialog class="testimonial-dialog" data-testimonial-dialog aria-label="Full review">
+            <button class="testimonial-dialog__close" type="button"
+                    data-testimonial-close aria-label="Close">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                <path d="M3 3l10 10M13 3L3 13" stroke-linecap="round"/>
+              </svg>
+            </button>
+            <p class="testimonial-dialog__mark" aria-hidden="true">&ldquo;</p>
+            <div class="testimonial-dialog__body" data-testimonial-dialog-body></div>
+            <p class="testimonial-dialog__by" data-testimonial-dialog-by></p>
+          </dialog>
+
+          <!-- Enhancement only. Without main.js the track is still a working
+               horizontal scroller, so these are hidden until they are wired up. -->
+          <div class="testimonials__nav" data-testimonial-nav hidden>
+            <button class="testimonials__arrow testimonials__arrow--prev" type="button"
+                    data-testimonial-prev aria-label="Previous testimonials">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                <path d="M10 2 4 8l6 6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+
+            <p class="testimonials__count">
+              <span data-testimonial-current>1</span> / <span data-testimonial-total>3</span>
+            </p>
+
+            <button class="testimonials__arrow testimonials__arrow--next" type="button"
+                    data-testimonial-next aria-label="More testimonials">
+              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                <path d="m6 2 6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =====================================================================
+         CLOSING CALL TO ACTION
+         ================================================================== -->
+    <section class="section cta">
+      <img class="cta__bg" src="/assets/img/work/cta-backdrop.jpg" alt=""
+           loading="lazy" decoding="async" aria-hidden="true">
+      <div class="shell cta__inner">
+        <p class="eyebrow eyebrow--ruled eyebrow--centred reveal">Enquiries</p>
+        <h2 class="section__title reveal" style="color:var(--color-white)">
+          Tell us about <em>your day</em>
+        </h2>
+        <p class="lede reveal" style="margin:1.5rem auto 0; color:color-mix(in srgb, var(--color-white) 78%, transparent)">
+          Dates for the coming season are limited. Lorem ipsum dolor sit amet,
+          consectetur adipiscing elit.
+        </p>
+        <p class="reveal" style="margin-top:2.25rem">
+          <a class="btn btn-cream" href="/contact">Start an enquiry</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       PROVISIONAL FOOTER
+       A working placeholder so pages do not end abruptly. The full footer is its
+       own build step in the plan; when it is built, this file is replaced
+       wholesale and every page picks it up with no other change.
+       ====================================================================== -->
+  <footer class="site-footer">
+    <div class="shell">
+
+      <div class="site-footer__top">
+        <div>
+          <a class="brand brand--footer" href="/" aria-label="The Memory Conservatory — home">
+            <img class="brand__logo" src="/assets/brand/wordmark-cream.png"
+                 alt="The Memory Conservatory" width="900" height="217">
+          </a>
+
+          <!-- Official tagline lockup, also supplied by the client. -->
+          <img class="brand__tagline" src="/assets/brand/tagline-cream.png"
+               alt="Preserving love, frame by frame." width="964" height="323">
+
+          <p style="margin-top:1.5rem; max-width:34ch;">
+            <!-- TODO:CLIENT replace with the client's own positioning line -->
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Weddings
+            photographed in Chennai, across South India, and wherever the day takes us.
+          </p>
+          <a class="whatsapp-inline" data-whatsapp data-enabled="false" href="#" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.86 9.86 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.87.85-.87 2.07s.89 2.4 1.02 2.57c.12.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+            Message on WhatsApp
+          </a>
+        </div>
+
+        <div>
+          <h2 class="site-footer__heading">Explore</h2>
+          <ul class="site-footer__list">
+            <li><a href="/about">About</a></li>
+            <li><a href="/gallery">Gallery</a></li>
+            <li><a href="/#process">The Process</a></li>
+            <li><a href="/#testimonials">Testimonials</a></li>
+            <li><a href="/faq">FAQ</a></li>
+            <li><a href="/contact">Enquire</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h2 class="site-footer__heading">Studio</h2>
+          <ul class="site-footer__list">
+            <!-- Real details, from the client's brand guidelines. -->
+            <li>#28, Duraiswamy Pillai St,<br>West Tambaram, Chennai</li>
+            <li><a href="mailto:thememoryconservatory@gmail.com">thememoryconservatory@gmail.com</a></li>
+            <li><a href="tel:+918438533169">+91 84385 33169</a></li>
+            <li style="margin-top:.5rem;"><a class="link-gilt" href="#">Instagram</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-footer__bottom">
+        <p>&copy; <span data-year>2026</span> The Memory Conservatory. All rights reserved.</p>
+        <p>Chennai &middot; South India &middot; Destination</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp button (mobile only). Hidden unless enabled in
+       preferences.js — see preferences.site.whatsapp. -->
+  <a class="whatsapp-float" data-whatsapp data-enabled="false" href="#" rel="noopener"
+     aria-label="Message us on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.86 9.86 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2Zm0 18.15h-.01a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.25-8.23a8.2 8.2 0 0 1 8.24 8.24c0 4.54-3.7 8.23-8.24 8.23Zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.43.06-.66.31-.22.25-.87.85-.87 2.07s.89 2.4 1.02 2.57c.12.16 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29Z"/></svg>
+  </a>
+
+  <script type="module" src="/assets/js/main.js"></script>
+  <script type="module" src="/assets/js/hero.js"></script>
+</body>
+</html>

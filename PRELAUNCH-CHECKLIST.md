@@ -9,30 +9,68 @@ in place.
 ---
 
 ## BLOCKERS
+- [ ] **Three lines of copy are ours, not the client's.** Every Lorem Ipsum is
+      gone, but three replacements were written by us and need his approval —
+      each carries a `TODO:CLIENT` at the point of use:
+        * the home-page hero line under the headline
+        * the closing enquiry line above "Start an enquiry"
+        * the FAQ page headline and the About process heading (noted earlier)
+      The five process steps, the About essay, the FAQs and the testimonials
+      are all his own words, unchanged.
 
-- [ ] **The site uses one colour outside the official palette.** The italic
-      emphasis in every headline is the pre-rebrand gold `#C8A24A`, added on the
-      client's explicit instruction because Soft Cream disappears on White and
-      on the Soft Cream band. The guidelines say *"Do not use colors that are
-      not included in the brand's official palette for brand representation."*
-      Measured: **3.7:1 on Deep Blue** (passes AA for large text), **2.4:1 on
-      White** and **2.0:1 on Soft Cream** (both below the 3:1 threshold).
-      Get this signed off, or switch `--color-gold` to `#a9822f`, which clears
-      3:1 on White and still reads as the same gold. One-line change in
-      `src/input.css`.
 
-- [ ] **Brand font files.** The guidelines specify **Dream Avenue** (headers)
-      and **ITC Avant Garde** (body, Regular + Bold). Neither was in the brand
-      bundle and both are licensed commercial faces. The site currently ships
-      **Playfair Display** and **Poppins** as documented stand-ins, so it is
-      **not yet strictly compliant on typography.**
-      Fix: obtain the licensed webfonts, drop the `.woff2` files into
-      `public/assets/fonts/`, and update the two `@font-face` blocks and the
-      `--font-display` / `--font-sans` tokens in `src/input.css`.
+- [ ] **Assets still owed by the client** (from the corrections document):
+      the photo-collage image set and its mockup, the testimonial and gallery
+      mockups, the black-on-white favicon, the film photographs for
+      /film-souvenirs, and the flagship images. All are on the client's G Drive
+      or "to follow in the next iteration"; each has a `TODO:CLIENT` at the
+      point of use.
 
-- [ ] **Gallery does not exist.** It is linked from the nav, the footer and the
-      home page's "See the full gallery" button, so **those links are 404s.**
-      About Us, FAQs, the Enquiry Form and Thank You are built.
+- [ ] **Name the film page.** The document says "Film Souvenirs or Analog
+      Method (Yet to finalise the exact name)". Built as **Film Souvenirs**.
+      Renaming means `src/pages/film-souvenirs.html`, its filename, and the two
+      nav lists in `partials/`.
+
+- [ ] **About Us redesign.** The client asked for a different design ("it feels
+      very one sided and long because of the text length") and for suggestions.
+      Not yet done — see the response for the three options put to them.
+
+- [ ] **Remove the `noindex` header.** `netlify.toml` ends with a
+      PRE-LAUNCH ONLY block sending `X-Robots-Tag: noindex, nofollow` on
+      every page, so the draft stays out of Google while the client
+      reviews it. **Delete that block before launch** — left in, the
+      finished site never appears in search results.
+
+- [ ] **Two colours outside the official palette.** The italic emphasis and
+      the reviewer names use a gold that is not in the guidelines, added on the
+      client's explicit instruction. It now exists in two values because one
+      cannot serve both grounds:
+
+        `--color-gold`      #C8A24A  photographs and Deep Blue  (3.7:1)
+        `--color-gold-ink`  #7D5F1A  White (5.96:1) and Cream (4.98:1)
+
+      The bright gold measured **2.4:1 on White and 2.0:1 on Soft Cream**, so
+      once the corrections moved the site onto light grounds it failed
+      everywhere. The deeper bronze is the same hue darkened until it clears
+      4.5:1 on both. Get both signed off, or drop the accent entirely and set
+      the italics in Deep Blue, which is fully palette-compliant.
+
+- [x] **Brand fonts — RESOLVED.** The corrections document replaces Dream
+      Avenue and ITC Avant Garde with **Hanken Grotesk** (headers) and **Sorts
+      Mill Goudy** (body). Both are open-licensed Google fonts, now self-hosted
+      in `public/assets/fonts/`. The webfont licensing question is closed.
+
+- [ ] **Gallery titles and curation need the client's sign-off.** The six
+      galleries are titled from the folder names he supplied ("Sheena x
+      Daniel"); he may want "&" or the venue and year. All 659 photographs are
+      published — a portfolio usually shows 20-40 per wedding. Both are edits
+      to `src/data/gallery.json`; neither needs the images re-processed.
+
+- [ ] **Confirm every couple consented** to their photographs appearing
+      publicly. Usually covered by the photography contract, but deletion is a
+      weaker remedy than it sounds: removing a photo from the live gallery
+      leaves it reachable at the previous Cloudflare deployment's URL until
+      that deployment is deleted too.
 
       The Process and Testimonials are no longer pages: both nav items are now
       fragment links to sections of the home page (`/#process`,

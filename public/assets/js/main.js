@@ -341,6 +341,72 @@ function initTestimonials() {
 
 
 /* -----------------------------------------------------------------------------
+   GALLERY LIGHTBOX
+
+   The grid shows 600px thumbnails. Clicking one opens the 2560px version in a
+   native <dialog>, which supplies the focus trap, the inert background,
+   Esc-to-close and focus return — all of which a hand-rolled overlay gets
+   wrong. The full-size source lives on the button as data-full, so it appears
+   once in the markup and is only fetched when someone actually opens it.
+   -------------------------------------------------------------------------- */
+
+function initLightbox() {
+  const dialog = document.querySelector('[data-lightbox]');
+  if (!dialog) return;
+
+  const image = dialog.querySelector('[data-lightbox-img]');
+  const close = dialog.querySelector('[data-lightbox-close]');
+  if (!image) return;
+
+  // Bumped on every open and on close, so a full-size file that finishes
+  // downloading after the viewer has moved on cannot write itself into the
+  // frame — which otherwise leaves the previous photograph loaded and flashes
+  // it on the next open.
+  let generation = 0;
+
+  const open = (button) => {
+    const src = button.dataset.full;
+    if (!src) return;
+    const thumbnail = button.querySelector('img');
+    const mine = ++generation;
+
+    // Show the thumbnail immediately, upscaled, so the frame is never empty
+    // while the full-size file travels. It is swapped the moment that lands.
+    if (thumbnail) {
+      image.src = thumbnail.currentSrc || thumbnail.src;
+      image.alt = thumbnail.alt || '';
+    }
+
+    const fullSize = new Image();
+    fullSize.onload = () => { if (mine === generation) image.src = src; };
+    fullSize.src = src;
+
+    dialog.showModal();
+  };
+
+  document.querySelectorAll('[data-full]').forEach((button) => {
+    button.addEventListener('click', () => open(button));
+  });
+
+  if (close) close.addEventListener('click', () => dialog.close());
+
+  // Clicking the backdrop closes it. The dialog fills the whole viewport, so
+  // "did they miss the image?" is the hit test — anything outside the <img>.
+  dialog.addEventListener('click', (event) => {
+    if (event.target === image || event.target.closest('[data-lightbox-close]')) return;
+    dialog.close();
+  });
+
+  // Drop the source on close so a large photograph is not held in memory, and
+  // so the next open never flashes the previous one.
+  dialog.addEventListener('close', () => {
+    generation += 1;
+    image.removeAttribute('src');
+  });
+}
+
+
+/* -----------------------------------------------------------------------------
    FOOTER YEAR
    -------------------------------------------------------------------------- */
 
@@ -357,4 +423,5 @@ initMobileMenu();
 initReveals();
 initTestimonials();
 initWhatsApp();
+initLightbox();
 initYear();

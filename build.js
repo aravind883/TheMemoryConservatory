@@ -84,6 +84,17 @@ function expand(html, depth, warnings) {
   });
 }
 
+/** Every .html under src/pages/, as paths relative to it, deepest last. */
+function findPages(dir, prefix = '') {
+  const found = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
+    const rel = prefix ? path.join(prefix, entry.name) : entry.name;
+    if (entry.isDirectory()) found.push(...findPages(path.join(dir, entry.name), rel));
+    else if (entry.name.endsWith('.html')) found.push(rel);
+  }
+  return found;
+}
+
 function buildOnce() {
   const started = Date.now();
   const warnings = [];
@@ -94,7 +105,7 @@ function buildOnce() {
     return;
   }
 
-  const pages = fs.readdirSync(PAGES_DIR).filter((f) => f.endsWith('.html')).sort();
+  const pages = findPages(PAGES_DIR);
   if (pages.length === 0) {
     console.warn('No .html files in src/pages/ — nothing to build.');
     return;
@@ -105,7 +116,11 @@ function buildOnce() {
   for (const page of pages) {
     const source = fs.readFileSync(path.join(PAGES_DIR, page), 'utf8');
     const output = expand(source, 0, warnings);
-    fs.writeFileSync(path.join(OUT_DIR, page), output, 'utf8');
+    const target = path.join(OUT_DIR, page);
+    // Sub-directories mirror the source tree, so src/pages/gallery/x.html is
+    // served at /gallery/x.
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, output, 'utf8');
     console.log(`  build  src/pages/${page}  ->  public/${page}`);
   }
 

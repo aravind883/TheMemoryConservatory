@@ -37,26 +37,31 @@
    NEITHER FONT FILE WAS SUPPLIED IN THE BRAND BUNDLE, and both are licensed
    commercial faces that cannot be downloaded freely. The two families below are
    stand-ins chosen to sit as close as possible to the specimens in the
-   guidelines, so the site reads correctly in the meantime:
+   THE BRAND FACES, as revised by the client in the corrections document:
 
-       Playfair Display  ->  standing in for Dream Avenue
-                             (high-contrast display serif, variable weight)
-       Poppins           ->  standing in for ITC Avant Garde
-                             (geometric sans, single-storey 'a', as per specimen)
+       Hanken Grotesk    headers   (geometric sans, variable weight)
+       Sorts Mill Goudy  body      (old-style serif, regular + italic)
 
-   TO SWAP IN THE REAL FONTS: drop the licensed .woff2 files into
-   public/assets/fonts/, change the two src: url() lines below, and update the
-   family names in --font-display / --font-sans. Nothing else needs to change —
-   no component references a font family directly.
+   Both are open-licensed Google fonts, self-hosted here. That settles the
+   licensing question the earlier pair raised: Dream Avenue and ITC Avant Garde
+   were commercial faces with no webfont licence supplied, so the site shipped
+   documented substitutes. These are licensed for web use outright.
+
+   Note the roles are inverted from the usual pairing: the SANS sets headings
+   and the SERIF sets body copy. That is deliberate and comes from the client.
+
+   TO CHANGE A FACE: drop the .woff2 into public/assets/fonts/, change the
+   src: url() lines below, and update --font-display / --font-sans. Nothing
+   else needs to change — no component references a font family directly.
    -------------------------------------------------------------------------- */
 
-/* SUBSTITUTE for Dream Avenue — replace when the licensed file arrives. */
+/* Header face — Hanken Grotesk. Variable, so one file covers every weight. */
 @font-face {
   font-family: "TMC Display";
   font-style: normal;
-  font-weight: 400 900;
+  font-weight: 100 900;
   font-display: swap;
-  src: url("/assets/fonts/playfair-variable-latin.woff2") format("woff2");
+  src: url("/assets/fonts/hanken-grotesk-variable-latin.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
     U+2212, U+2215, U+FEFF, U+FFFD;
@@ -65,25 +70,37 @@
 @font-face {
   font-family: "TMC Display";
   font-style: italic;
-  font-weight: 400 900;
+  font-weight: 100 900;
   font-display: swap;
-  src: url("/assets/fonts/playfair-italic-variable-latin.woff2") format("woff2");
+  src: url("/assets/fonts/hanken-grotesk-italic-variable-latin.woff2") format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
     U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* SUBSTITUTE for ITC Avant Garde — replace when the licensed file arrives.
-   The guidelines call for Regular and Bold; 500 and 600 are carried too, for
-   the letter-spaced labels the design already uses. */
-@font-face { font-family: "TMC Sans"; font-style: normal; font-weight: 400; font-display: swap;
-  src: url("/assets/fonts/poppins-400-latin.woff2") format("woff2"); }
-@font-face { font-family: "TMC Sans"; font-style: normal; font-weight: 500; font-display: swap;
-  src: url("/assets/fonts/poppins-500-latin.woff2") format("woff2"); }
-@font-face { font-family: "TMC Sans"; font-style: normal; font-weight: 600; font-display: swap;
-  src: url("/assets/fonts/poppins-600-latin.woff2") format("woff2"); }
-@font-face { font-family: "TMC Sans"; font-style: normal; font-weight: 700; font-display: swap;
-  src: url("/assets/fonts/poppins-700-latin.woff2") format("woff2"); }
+/* Body face — Sorts Mill Goudy. It ships one weight only, so the browser
+   synthesises bold. That is fine for the little bold this design uses. */
+@font-face {
+  font-family: "TMC Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/sorts-mill-goudy-400-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "TMC Sans";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/assets/fonts/sorts-mill-goudy-italic-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
 
 
 /* -----------------------------------------------------------------------------
@@ -144,13 +161,33 @@
      the client would rather have the compliance than the exact old shade. */
   --color-gold:  #c8a24a;
 
+  /* --- Accent gold, light-ground variant --------------------------------
+     The bright gold above is only legible on a DARK ground. Measured:
+
+       #c8a24a on Deep Blue   3.7:1   passes for large text
+       #c8a24a on White       2.4:1   FAILS
+       #c8a24a on Soft Cream  2.0:1   FAILS, the worst case
+
+     The client's corrections moved almost the whole site onto cream and white,
+     which put every gold italic and every reviewer's name below the threshold.
+     This deeper bronze is the same hue, darkened until it clears 4.5:1 on BOTH
+     light grounds, so it is safe at any text size with no exceptions to
+     remember:
+
+       #7d5f1a on White       5.96:1
+       #7d5f1a on Soft Cream  4.98:1
+
+     Use --color-gold on photographs and Deep Blue; --color-gold-ink on white
+     and cream. */
+  --color-gold-ink: #7d5f1a;
+
   /* --- Typefaces --------------------------------------------------------- */
-  /* Header face — Dream Avenue per the guidelines, currently substituted. */
-  --font-display: "TMC Display", "Iowan Old Style", "Palatino Linotype",
-                  Palatino, Georgia, "Times New Roman", serif;
-  /* Body face — ITC Avant Garde per the guidelines, currently substituted. */
-  --font-sans: "TMC Sans", "Century Gothic", ui-sans-serif, system-ui,
-               -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Header face — Hanken Grotesk. A grotesque sans, so the fallbacks are too. */
+  --font-display: "TMC Display", ui-sans-serif, system-ui, -apple-system,
+                  "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Body face — Sorts Mill Goudy. An old-style serif; fallbacks match. */
+  --font-sans: "TMC Sans", "Iowan Old Style", "Palatino Linotype", Palatino,
+               Georgia, "Times New Roman", serif;
 
   /* --- Fluid type scale --------------------------------------------------
      clamp() scales continuously from a 320px phone to a 2560px ultra-wide,
@@ -346,8 +383,7 @@
   .section--blue .eyebrow,
   .hero .eyebrow,
   .page-hero .eyebrow,
-  .cta .eyebrow,
-  .site-footer .eyebrow { color: var(--color-cream); }
+  .cta .eyebrow { color: var(--color-cream); }
 
   /* Hairline rule beside an eyebrow.
 
@@ -425,6 +461,27 @@
     color: var(--color-cream);
   }
 
+  /* .btn-outline is drawn in white for dark grounds — a photograph or the Deep
+     Blue band. On a light ground that is white-on-white and the button simply
+     disappears. Rather than a modifier class someone has to remember, the
+     light grounds re-state it themselves, so any future button placed in one
+     is correct by default. */
+  .site-header .btn-outline,
+  .section--white .btn-outline,
+  .section--cream .btn-outline {
+    color: var(--color-blue);
+    border-color: color-mix(in srgb, var(--color-blue) 45%, transparent);
+    backdrop-filter: none;
+  }
+
+  .site-header .btn-outline:hover,
+  .section--white .btn-outline:hover,
+  .section--cream .btn-outline:hover {
+    background: color-mix(in srgb, var(--color-blue) 8%, transparent);
+    border-color: var(--color-blue);
+    color: var(--color-blue);
+  }
+
   .btn-blue {
     background: var(--color-blue);
     color: var(--color-white);
@@ -500,8 +557,7 @@
   .hero,
   .page-hero,
   .section--blue,
-  .cta,
-  .site-footer { --focus-ring: var(--color-cream); }
+  .cta { --focus-ring: var(--color-cream); }
 
   .site-header {
     position: fixed;
@@ -509,44 +565,19 @@
     top: 0;
     z-index: 60;
 
-    /* No background at rest — the bar sits directly on the hero photograph —
-       then a solid --color-blue fades in once the page scrolls.
+    /* Soft Cream ground with Deep Blue type, per the client's correction:
+       "We prefer the soft cream background and blue font color ... especially
+       in the header and footer area."
 
-       This is a plain background-color rather than a pseudo-element because
-       colours interpolate. The earlier gradient version needed a separate
-       layer to fade, since a gradient is a background-IMAGE and CSS cannot
-       animate from `none` to one. With a solid fill that indirection buys
-       nothing, so the extra element is gone.
-
-       Interpolating from `transparent` is safe here: `transparent` resolves to
-       rgba(0,0,0,0) and the target colour is dark, so the transition never
-       passes through a pale midpoint. */
-    background-color: transparent;
-    transition: background-color 0.45s var(--ease-conservatory);
-  }
-
-  /* main.js sets this once the page has scrolled past 40px. */
-  /* Interior pages: solid from the start.
-
-     Measured, not guessed: with a transparent header over the About page's
-     mandap photograph, Soft Cream nav text sat at 2.0:1 against the brightest
-     pixels behind it — against a 4.5:1 requirement. It measured 2.0:1 on the
-     enquiry page too, so this is structural rather than a bad image choice.
-     Scrimming it away needs roughly 85% opacity across the top of the frame,
-     which is no longer a photograph.
-
-     The landing hero keeps its transparent header: its images are dark at the
-     top, and the floating bar over a full-bleed photograph is the site's
-     signature opening. Interior pages give that up for legibility.
-
-     :has() rather than a body class so a new interior page cannot forget it —
-     using .page-hero is enough to get the solid bar. */
-  body:has(.page-hero) .site-header {
-    background-color: var(--color-blue);
-  }
-
-  .site-header[data-scrolled="true"] {
-    background-color: var(--color-blue);
+       Solid at every scroll position, on every page. The bar used to be
+       transparent over the landing hero and fade to Deep Blue on scroll, which
+       worked because CREAM type stays legible over a dark photograph. Inverting
+       it breaks that: BLUE type over a photograph is the same 2.0:1 failure
+       measured earlier on the interior pages, only now on the home page too.
+       A solid ground is the only version of cream-on-blue that is readable
+       everywhere, so the fade is gone rather than left as a trap. */
+    background-color: var(--color-cream);
+    color: var(--color-blue);
   }
 
   .site-header__inner {
@@ -612,7 +643,7 @@
     font-size: 1.0625rem;
     font-weight: 400;
     letter-spacing: 0.02em;
-    color: var(--color-white);
+    color: var(--color-blue);
     text-decoration: none;
     padding-block: 0.35rem;
     white-space: nowrap;
@@ -632,31 +663,36 @@
     transition: transform 0.5s var(--ease-conservatory);
   }
 
-  .nav-desktop__link:hover { color: var(--color-cream); }
+  .nav-desktop__link:hover { color: var(--color-gold-ink); }
   .nav-desktop__link:hover::after,
   .nav-desktop__link:focus-visible::after { transform: scaleX(1); transform-origin: left; }
 
   /* Current page marker — pure CSS, driven by data attributes the build script
      writes, so no JavaScript is involved in highlighting the active link. */
   .site-nav[data-nav-active="home"] .nav-desktop__link[data-nav="home"],
-  .site-nav[data-nav-active="about"] .nav-desktop__link[data-nav="about"],
   .site-nav[data-nav-active="gallery"] .nav-desktop__link[data-nav="gallery"],
-  .site-nav[data-nav-active="process"] .nav-desktop__link[data-nav="process"],
-  .site-nav[data-nav-active="testimonials"] .nav-desktop__link[data-nav="testimonials"],
+  .site-nav[data-nav-active="film"] .nav-desktop__link[data-nav="film"],
+  .site-nav[data-nav-active="about"] .nav-desktop__link[data-nav="about"],
   .site-nav[data-nav-active="faq"] .nav-desktop__link[data-nav="faq"],
   .site-nav[data-nav-active="contact"] .nav-desktop__link[data-nav="contact"] {
-    color: var(--color-cream);
+    /* The current page is marked by the underline below, NOT by a colour
+       change. Two earlier attempts failed on measurement: cream was the
+       background colour itself (invisible), and gold measured 2.01:1 against
+       cream, well under the 4.5:1 this 17px text needs. Deep Blue holds at
+       7.51:1, and the underline carries the signal — which is a non-colour
+       cue, so it also works for anyone who cannot distinguish the two. */
+    color: var(--color-blue);
+    font-weight: 600;
   }
   .site-nav[data-nav-active="home"] .nav-desktop__link[data-nav="home"]::after,
-  .site-nav[data-nav-active="about"] .nav-desktop__link[data-nav="about"]::after,
   .site-nav[data-nav-active="gallery"] .nav-desktop__link[data-nav="gallery"]::after,
-  .site-nav[data-nav-active="process"] .nav-desktop__link[data-nav="process"]::after,
-  .site-nav[data-nav-active="testimonials"] .nav-desktop__link[data-nav="testimonials"]::after,
+  .site-nav[data-nav-active="film"] .nav-desktop__link[data-nav="film"]::after,
+  .site-nav[data-nav-active="about"] .nav-desktop__link[data-nav="about"]::after,
   .site-nav[data-nav-active="faq"] .nav-desktop__link[data-nav="faq"]::after,
   .site-nav[data-nav-active="contact"] .nav-desktop__link[data-nav="contact"]::after {
     transform: scaleX(1);
     transform-origin: left;
-    opacity: 0.75;
+    opacity: 1;
   }
 
   /* --- Mobile menu trigger ----------------------------------------------- */
@@ -1024,6 +1060,8 @@
      block. The margin above stays for any future hero that reinstates a label. */
   .hero__title:first-child { margin-top: 0; }
 
+  /* Stays the bright gold: this headline sits over a dark photograph, where
+     #c8a24a measures well and the deeper bronze would go muddy. */
   .hero__title em {
     font-style: italic;
     color: var(--color-gold);
@@ -1315,7 +1353,12 @@
      invisible on White and on the Soft Cream band. The client has chosen the
      pre-rebrand gold instead so the emphasis reads as an accent everywhere;
      see --color-gold for the contrast trade-off that comes with it. */
-  .section__title em { font-style: italic; color: var(--color-gold); }
+  .section__title em { font-style: italic; color: var(--color-gold-ink); }
+
+  /* ...except where a .section__title is laid over a photograph or the Deep
+     Blue band, which want the bright gold back. */
+  .cta .section__title em,
+  .section--blue .section__title em { color: var(--color-gold); }
 
   .lede {
     font-size: var(--text-lede);
@@ -1610,35 +1653,6 @@
     color: color-mix(in srgb, var(--color-cream) 90%, transparent);
   }
 
-  /* --- Process steps --------------------------------------------------------- */
-
-  .step-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: clamp(2rem, 4vw, 3.5rem);
-    margin-top: clamp(2.5rem, 5vw, 4rem);
-  }
-
-  @media (min-width: 48rem) { .step-grid { grid-template-columns: repeat(3, 1fr); } }
-
-  .step { position: relative; padding-top: 2rem; border-top: 1px solid color-mix(in srgb, var(--color-cream) 40%, transparent); }
-
-  .step__num {
-    font-family: var(--font-display);
-    font-size: 0.875rem;
-    letter-spacing: 0.2em;
-    color: var(--color-cream);
-  }
-
-  .step__title {
-    font-family: var(--font-display);
-    font-size: var(--text-subtitle);
-    margin-top: 0.875rem;
-    color: inherit;
-  }
-
-  .step__body { margin-top: 0.875rem; color: color-mix(in srgb, var(--color-white) 72%, transparent); }
-
   /* --- Testimonial ----------------------------------------------------------- */
 
   .quote {
@@ -1793,6 +1807,7 @@
   @media (min-width: 48rem)  { .page-hero__title { max-width: 34rem; } }
   @media (min-width: 80rem)  { .page-hero__title { max-width: 46rem; } }
 
+  /* Also over a photograph — bright gold is correct here. */
   .page-hero__title em { font-style: italic; color: var(--color-gold); }
 
 
@@ -1866,7 +1881,11 @@
 
 
   /* --- Process list ---------------------------------------------------------
-     Five sequential steps. The home page's .step-grid is a three-column grid
+     Five sequential steps, used on both the home page and About. (There was a
+     separate three-column .step-grid teaser on the home page; the client's
+     corrections asked for the process "in full details" there too, so both
+     pages now use this one component and the teaser has been removed.)
+     The earlier note read: the home page's .step-grid is a three-column grid
      and five items in it leaves a ragged 3 + 2 last row; a numbered list also
      reads as a sequence, which a grid does not.
      ----------------------------------------------------------------------- */
@@ -1880,7 +1899,7 @@
     display: grid;
     gap: 0.625rem;
     padding-block: clamp(1.75rem, 3vw, 2.75rem);
-    border-top: 1px solid color-mix(in srgb, var(--color-cream) 30%, transparent);
+    border-top: 1px solid color-mix(in srgb, var(--color-blue) 24%, transparent);
   }
 
   /* Number and title share a column, body takes the rest. Below this the rows
@@ -1894,12 +1913,16 @@
     .process-step__num { grid-row: 1; }
   }
 
+  /* These five steps used to sit on a Deep Blue band. The client's corrections
+     moved the section to a Soft Cream ground, where cream numerals measured
+     1.0:1, the title 1.2:1 and the body 1.14:1 — the whole of the client's own
+     five-step process was invisible. Deep Blue at 80% clears 4.5:1 on cream. */
   .process-step__num {
     font-family: var(--font-display);
     font-size: 0.875rem;
     letter-spacing: 0.2em;
     line-height: 1.9;
-    color: var(--color-cream);
+    color: color-mix(in srgb, var(--color-blue) 80%, transparent);
   }
 
   .process-step__title {
@@ -1907,11 +1930,11 @@
     font-size: var(--text-subtitle);
     line-height: var(--text-subtitle--line-height);
     font-weight: 400;
-    color: var(--color-white);
+    color: var(--color-blue);
   }
 
   .process-step__body {
-    color: color-mix(in srgb, var(--color-white) 74%, transparent);
+    color: color-mix(in srgb, var(--color-blue) 84%, transparent);
   }
 
 
@@ -1980,22 +2003,24 @@
 
   /* --- Intro: copy beside the direct contact details ----------------------- */
 
+  /* One centred column, not two. The client's correction: the two-column
+     version "feels like a footer area since the majority of the content is the
+     same. Please make it centre aligned and one paragraph can follow the
+     other." The direct contact details now sit under the copy rather than
+     beside it. */
   .enquiry-intro {
     display: grid;
-    gap: clamp(2.5rem, 5vw, 4rem);
+    gap: clamp(2.5rem, 5vw, 3.5rem);
+    max-width: var(--container-prose);
+    margin-inline: auto;
+    text-align: center;
   }
 
-  @media (min-width: 62rem) {
-    .enquiry-intro {
-      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-      column-gap: clamp(3rem, 6vw, 7rem);
-      align-items: start;
-    }
-  }
+  .enquiry-intro .prose p + p { margin-top: 1rem; }
 
   .contact-card {
     padding-top: clamp(1.5rem, 3vw, 2rem);
-    border-top: 2px solid var(--color-blue);
+    border-top: 1px solid color-mix(in srgb, var(--color-blue) 30%, transparent);
   }
 
   .contact-card__list {
@@ -2040,7 +2065,14 @@
      the kind of thing that survives a review and ships.
      ----------------------------------------------------------------------- */
 
-  .form { counter-reset: field; }
+  /* Narrowed and centred. The client asked to "slightly reduce the width of
+     the text displayed and make it intact in the central part of the screen.
+     This could give a feeling of having a shorter questionnaire to answer." */
+  .form {
+    counter-reset: field;
+    max-width: 46rem;
+    margin-inline: auto;
+  }
 
   .form__grid {
     display: grid;
@@ -2103,56 +2135,35 @@
      certificate or an engraved invitation breaks its own border for a heading.
      It keeps the form's hairline language — no fills, no cards — and reads as
      deliberate rather than as a UI panel dropped onto an editorial page. */
+  /* The framed treatment is gone. The client's correction: "Please retain the
+     same design for couples names and event dates. Feels like the uniformity
+     is missing if we prioritize these two questions." These two now read as
+     ordinary numbered questions that happen to hold two inputs. */
   .field-group {
-    position: relative;
-    border: 1px solid color-mix(in srgb, var(--color-blue) 22%, transparent);
-    /* No padding at the top: the title supplies its own by straddling the rule. */
-    padding: 0 clamp(1.25rem, 3vw, 2.5rem) clamp(1.75rem, 3.5vw, 2.75rem);
+    margin-block: clamp(0.75rem, 2vw, 1.25rem);
   }
 
-  /* Breathing room around the frame, on the frame itself.
-
-     This was originally `.field-group + .field { margin-top: … }`, which is
-     wrong in a two-column grid: the adjacent sibling is only the FIRST cell of
-     the next row, so "Your name" got the margin and "Email" beside it did not,
-     and the pair sat 9px out of alignment. A margin on the full-width group
-     grows its own row and pushes the next row down evenly. */
-  .field-group { margin-block: clamp(0.75rem, 2vw, 1.25rem); }
-
+  /* Identical to .field__label. The client asked for "the same design for
+     couples names and event dates" because giving these two a larger title
+     made them look prioritised over the other nine questions. They are now
+     the same size and weight as every other label — the only difference is
+     that two inputs sit beneath instead of one. */
   .field-group__title {
-    /* fit-content + auto margins so the title is only as wide as its own text —
-       a full-width block would erase the whole top rule instead of breaking it. */
-    width: fit-content;
-    max-width: calc(100% - 2rem);
-    /* Negative by a little over half the line box, which lifts the text until
-       its centre sits on the border. em, so it tracks the clamped font size at
-       every breakpoint instead of drifting off the rule on a phone. */
-    margin: -0.62em auto 0;
-    padding-inline: clamp(0.75rem, 2vw, 1.5rem);
-    /* Masks the rule behind the text. This has to match the section's ground,
-       which is why the enquiry form is a section--white; on a cream band this
-       needs var(--color-cream). */
-    background: var(--color-white);
-    text-align: center;
+    display: block;
+    width: 100%;
+    padding: 0;
     font-family: var(--font-display);
-    font-size: var(--text-title);
-    line-height: var(--text-title--line-height);
-    font-weight: 300;
+    font-size: var(--text-subtitle);
+    line-height: var(--text-subtitle--line-height);
     color: var(--color-blue);
   }
 
-  /* No rule under the title any more: the frame already separates the group
-     from the page, and a second hairline a centimetre below the first one
-     read as a mistake. */
-
-  /* em, not rem: the numeral then scales with the title it belongs to instead
-     of drifting out of proportion at the small end of the clamp. */
   .field-group__title::before {
     content: counter(field, decimal-leading-zero);
-    font-size: 0.45em;
+    font-size: 0.8125rem;
     letter-spacing: 0.18em;
-    vertical-align: 0.85em;
-    margin-right: 0.7rem;
+    vertical-align: 0.3em;
+    margin-right: 0.75rem;
     color: color-mix(in srgb, var(--color-blue) 72%, transparent);
   }
 
@@ -2202,16 +2213,19 @@
     display: block;
     width: 100%;
     margin-top: 0.875rem;
-    padding: 0.55rem 0 0.7rem;
+    /* A drawn box rather than a single underline. The client asked for "a
+       proper space bar or a text box for this" — an underline leaves the
+       target ambiguous, especially on a phone, because there is nothing to
+       show how tall the field is or where it ends. */
+    padding: 0.8rem 1rem;
     font-family: var(--font-sans);
     font-size: var(--text-lede);
     line-height: 1.5;
     color: var(--color-blue);
-    background: transparent;
+    background: var(--color-white);
     appearance: none;
-    border: 0;
-    border-radius: 0;
-    border-bottom: 1px solid color-mix(in srgb, var(--color-blue) 30%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-blue) 28%, transparent);
+    border-radius: 2px;
     transition: border-color 0.4s var(--ease-conservatory),
                 box-shadow 0.4s var(--ease-conservatory);
   }
@@ -2250,17 +2264,19 @@
 
   .field__input::placeholder,
   .field__textarea::placeholder {
-    /* These placeholders carry format hints, not repeated labels, so they have
-       to clear 4.5:1 like any other body text. 52% measured well under it. */
-    color: color-mix(in srgb, var(--color-blue) 74%, transparent);
+    /* The client asked for "a slightly grey or half white color for better
+       visibility". These carry format hints rather than repeated labels, so
+       they still have to clear 4.5:1 — 68% of Deep Blue on white measures
+       5.1:1, which is as light as this can go and stay compliant. */
+    color: color-mix(in srgb, var(--color-blue) 68%, transparent);
   }
 
   /* The second pixel is painted with a shadow rather than a thicker border:
      growing the border would reflow the field by 1px on every focus. */
   .field__input:focus,
   .field__textarea:focus {
-    border-bottom-color: var(--color-blue);
-    box-shadow: 0 1px 0 0 var(--color-blue);
+    border-color: var(--color-blue);
+    box-shadow: 0 0 0 1px var(--color-blue);
   }
 
   /* No outline on the text fields. The rule that WCAG cares about is that focus
@@ -2393,7 +2409,7 @@
     list-style: none;
     cursor: pointer;
     display: grid;
-    grid-template-columns: 2.75rem minmax(0, 1fr) 1.5rem;
+    grid-template-columns: 1.5rem minmax(0, 1fr) 1.5rem;
     align-items: baseline;
     gap: 0 1rem;
     padding-block: clamp(1.25rem, 2.4vw, 1.9rem);
@@ -2411,15 +2427,19 @@
 
   /* The generated numeral is decoration; ::before keeps it out of the
      accessibility tree so a screen reader announces the question, not "one two". */
+  /* A bullet, not a number — the client's correction: "Use bullet points
+     instead of numbers." The counter is left incrementing so the numbering can
+     be restored by swapping this one declaration back. */
   .faq-item > summary::before {
-    content: counter(faq, decimal-leading-zero);
-    font-size: 0.8125rem;
-    letter-spacing: 0.18em;
-    color: color-mix(in srgb, var(--color-blue) 72%, transparent);
+    content: "\2022";
+    font-size: 1.25rem;
+    line-height: 1;
+    text-align: center;
+    color: color-mix(in srgb, var(--color-blue) 62%, transparent);
   }
 
   @media (max-width: 35.999rem) {
-    .faq-item > summary { grid-template-columns: 2rem minmax(0, 1fr) 1.25rem; gap: 0 0.75rem; }
+    .faq-item > summary { grid-template-columns: 1.25rem minmax(0, 1fr) 1.25rem; gap: 0 0.75rem; }
   }
 
   /* --- The plus / minus -----------------------------------------------------
@@ -2609,14 +2629,25 @@
      makes the set uniform rather than ragged.
      ----------------------------------------------------------------------- */
 
+  /* Boxed, on a ground of their own — the client asked to "box up the
+     individual reviews" and give the section a background colour. The rule
+     that used to sit above each review is now the edge of its box. */
   .testimonial {
     position: relative;                 /* anchors .testimonial__open */
     scroll-snap-align: start;
     align-self: stretch;
     display: flex;
     flex-direction: column;
-    padding-top: clamp(1.25rem, 2.5vw, 1.75rem);
-    border-top: 1px solid color-mix(in srgb, var(--color-blue) 26%, transparent);
+    padding: clamp(1.5rem, 3vw, 2.25rem);
+    background: var(--color-white);
+    border: 1px solid color-mix(in srgb, var(--color-blue) 16%, transparent);
+    transition: border-color 0.4s var(--ease-conservatory),
+                box-shadow 0.4s var(--ease-conservatory);
+  }
+
+  .testimonial:hover {
+    border-color: color-mix(in srgb, var(--color-blue) 32%, transparent);
+    box-shadow: 0 1rem 2.5rem color-mix(in srgb, var(--color-blue) 10%, transparent);
   }
 
   .testimonial__mark {
@@ -2631,7 +2662,10 @@
 
   .testimonial__body {
     margin-top: 0.75rem;
-    font-size: var(--text-body);
+    /* A step below body copy. The client asked for whole reviews rather than
+       truncated ones, "even if the font size needs to be reduced" — this is
+       what buys the room for the longest of the nine. */
+    font-size: 0.9375rem;
     line-height: 1.8;
     color: color-mix(in srgb, var(--color-blue) 84%, transparent);
     text-align: justify;
@@ -2641,15 +2675,6 @@
        Letting the browser hyphenate keeps the spacing even. It needs the lang
        attribute on <html>, which is set. */
     hyphens: auto;
-
-    /* The clamp. -webkit-box is not a legacy prefix here: it is still the only
-       way to limit an element to N lines, and every current browser implements
-       it under that name. Twelve lines fits seven of the nine reviews whole at
-       three across; the other two are cut and open in full in the dialog. */
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 12;
-    overflow: hidden;
   }
 
   /* Pushes the name to the foot of the card, so the names line up across a row
@@ -2664,7 +2689,7 @@
     font-style: italic;
     letter-spacing: 0;
     text-transform: none;
-    color: var(--color-gold);
+    color: var(--color-gold-ink);
   }
 
   /* --- The whole card is the trigger ----------------------------------------
@@ -2770,7 +2795,7 @@
     font-size: var(--text-title);
     line-height: var(--text-title--line-height);
     font-style: italic;
-    color: var(--color-gold);
+    color: var(--color-gold-ink);
   }
 
   .testimonial-dialog__close {
@@ -2901,14 +2926,17 @@
      build step and will replace partials/footer.html wholesale.
      ========================================================================== */
 
+  /* Soft Cream ground, Deep Blue type — the client's stated first preference,
+     and the same treatment as the header so the page is bracketed by it.
+     Measured: Deep Blue on Soft Cream is 7.6:1, safe for body copy. */
   .site-footer {
-    background: var(--color-blue);
-    color: color-mix(in srgb, var(--color-white) 72%, transparent);
+    background: var(--color-cream);
+    color: color-mix(in srgb, var(--color-blue) 82%, transparent);
     padding-block: clamp(3rem, 2rem + 4vw, 5rem);
   }
 
   .site-footer a { color: inherit; text-decoration: none; }
-  .site-footer a:hover { color: var(--color-cream); }
+  .site-footer a:hover { color: var(--color-blue); }
 
   .site-footer__top {
     display: grid;
@@ -2926,7 +2954,8 @@
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--color-cream);
+    /* Cream on cream measured 1.0:1 once the footer inverted. */
+    color: var(--color-blue);
     margin-bottom: 1.125rem;
   }
 
@@ -2940,7 +2969,10 @@
     align-items: center;
     padding-top: 1.75rem;
     font-size: var(--text-small);
-    color: color-mix(in srgb, var(--color-white) 55%, transparent);
+    /* Was white-on-blue at 55%; on cream that measured 1.1:1. 72% then
+       measured 3.96:1, still short — Deep Blue needs 78% over cream to reach
+       4.5:1, so this sits at 84% for headroom. */
+    color: color-mix(in srgb, var(--color-blue) 84%, transparent);
   }
 
   .whatsapp-inline {
@@ -2996,6 +3028,321 @@
     .eyebrow--ruled::after,
     .eyebrow--centred.eyebrow--ruled::before { display: none; }
   }
+
+
+
+  /* ===========================================================================
+     COLLAGE
+     ===========================================================================
+     A field of photographs with the tagline set into the middle of it, rather
+     than a heading placed above. Five columns by three rows; the tagline holds
+     the centre three cells of the middle row and the photographs flow around
+     it. Twelve images plus a three-wide tagline fills the fifteen cells
+     exactly, so the block always ends on a complete row.
+     ------------------------------------------------------------------------ */
+
+  .collage-section { padding-inline: 0; }
+
+  .collage {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    padding-inline: 2px;
+  }
+
+  @media (min-width: 36rem) { .collage { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 62rem) { .collage { grid-template-columns: repeat(5, 1fr); } }
+
+  .collage__item {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+    background: var(--color-grey);
+    aspect-ratio: 1 / 1;
+  }
+
+  .collage__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s var(--ease-conservatory);
+  }
+
+  .collage__item:hover img { transform: scale(1.05); }
+
+  .collage__tagline {
+    /* Placed explicitly; the photographs auto-flow around it. */
+    grid-column: 1 / -1;
+    order: 4;                      /* after the first four on a 2-col phone */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: clamp(2rem, 5vw, 3rem) 1rem;
+    margin: 0;
+    background: var(--color-cream);
+    font-family: var(--font-display);
+    font-size: var(--text-title);
+    line-height: 1.35;
+    font-weight: 300;
+    color: var(--color-blue);
+  }
+
+  .collage__tagline em {
+    font-style: italic;
+    color: var(--color-gold-ink);
+  }
+
+  @media (min-width: 62rem) {
+    .collage__tagline {
+      order: 0;
+      grid-column: 2 / 5;
+      grid-row: 2;
+      aspect-ratio: auto;
+      font-size: var(--text-display);
+      line-height: var(--text-display--line-height);
+    }
+  }
+
+  /* ===========================================================================
+     GALLERY
+     ===========================================================================
+     Two page types, both generated by gallery.js:
+
+       /gallery           .gallery-grid  — one card per wedding
+       /gallery/<slug>    .shot-grid     — every photograph in that wedding
+
+     Photographs come from Cloudflare in two sizes: 600px thumbnails fill the
+     grids, and the 2560px version is fetched only when someone opens the
+     lightbox. A grid of 160 thumbnails is therefore a few hundred KB, not
+     seventy megabytes.
+     ------------------------------------------------------------------------ */
+
+  /* A shorter hero on an individual wedding: the photographs are the point,
+     and a full-height hero pushes all of them below the fold. */
+  .page-hero--short { min-height: clamp(16rem, 11rem + 20vw, 26rem); }
+
+  /* The eyebrow doubles as the way back to the index. */
+  .page-hero__back {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in srgb, currentColor 45%, transparent);
+    padding-bottom: 0.15em;
+    transition: border-color 0.3s var(--ease-conservatory);
+  }
+  .page-hero__back::before { content: "\2190"; margin-right: 0.55em; }
+  .page-hero__back:hover { border-bottom-color: currentColor; }
+
+  /* --- The index ---------------------------------------------------------- */
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(1.75rem, 3vw, 2.75rem);
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+  }
+
+  /* Three columns, as the client asked: "Please use a three column based
+     layout. With one image with the couple name and genre of the shoot." */
+  @media (min-width: 48rem) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 64rem) { .gallery-grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .page-hero__genre {
+    margin-top: 0.75rem;
+    font-size: var(--text-eyebrow);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: color-mix(in srgb, var(--color-cream) 88%, transparent);
+  }
+
+  .gallery-card { display: block; text-decoration: none; color: inherit; }
+
+  /* A fixed 4:5 frame regardless of the cover's own shape, so the row of cards
+     is even. The image is cropped to fill it rather than letterboxed. */
+  .gallery-card__frame {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    background: var(--color-grey);
+  }
+
+  .gallery-card__frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s var(--ease-conservatory);
+  }
+
+  /* The same whisper of indigo the home-page tiles carry, so a set of very
+     differently lit covers still reads as one field. It lifts on hover. */
+  .gallery-card__veil {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--color-blue) 10%, transparent) 0%,
+      color-mix(in srgb, var(--color-blue) 26%, transparent) 100%
+    );
+    transition: opacity 0.6s var(--ease-conservatory);
+    pointer-events: none;
+  }
+
+  .gallery-card:hover .gallery-card__veil { opacity: 0.35; }
+  .gallery-card:hover .gallery-card__frame img { transform: scale(1.05); }
+
+  .gallery-card__body {
+    display: block;
+    padding-top: clamp(1rem, 2vw, 1.4rem);
+    border-top: 1px solid color-mix(in srgb, var(--color-blue) 22%, transparent);
+    margin-top: clamp(1rem, 2vw, 1.4rem);
+  }
+
+  .gallery-card__title {
+    display: block;
+    font-family: var(--font-display);
+    font-size: var(--text-title);
+    line-height: var(--text-title--line-height);
+    font-weight: 300;
+    color: var(--color-blue);
+  }
+
+  .gallery-card__meta {
+    display: block;
+    margin-top: 0.4rem;
+    font-size: var(--text-eyebrow);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    /* 62% measured 3.37:1 against white — short of the 4.5:1 this 12px text
+       needs. Deep Blue clears it at 74% on white; 80% for headroom. */
+    color: color-mix(in srgb, var(--color-blue) 80%, transparent);
+  }
+
+  .gallery-card:focus-visible .gallery-card__frame {
+    outline: var(--focus-ring);
+    outline-offset: 3px;
+  }
+
+  /* --- One wedding -------------------------------------------------------- */
+
+  /* Columns rather than a grid: every photograph keeps its own proportions, so
+     nothing is cropped and portrait and landscape sit together the way they
+     would in a printed album. Reading order runs down each column, which for a
+     gallery is no worse than across — and the alternative crops faces. */
+  .shot-grid {
+    columns: 2;
+    column-gap: clamp(0.5rem, 1.2vw, 1rem);
+    margin-top: clamp(1rem, 2vw, 2rem);
+  }
+
+  @media (min-width: 36rem) { .shot-grid { columns: 3; } }
+  @media (min-width: 62rem) { .shot-grid { columns: 4; } }
+
+  .shot {
+    margin: 0 0 clamp(0.5rem, 1.2vw, 1rem);
+    break-inside: avoid;
+  }
+
+  .shot__open {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: var(--color-grey);
+    cursor: zoom-in;
+    overflow: hidden;
+    /* The ratio comes from the manifest, so the box is the right shape before
+       the image arrives and the column never reflows as thumbnails load. */
+    aspect-ratio: var(--ratio, 1);
+  }
+
+  .shot__open img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 1.2s var(--ease-conservatory),
+                opacity 0.5s var(--ease-conservatory);
+  }
+
+  .shot__open:hover img { transform: scale(1.04); opacity: 0.88; }
+  .shot__open:focus-visible { outline: var(--focus-ring); outline-offset: 3px; }
+
+  @media (min-width: 62rem) {
+    .work-grid--three { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .gallery-next {
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    text-align: center;
+  }
+
+  /* --- The lightbox ------------------------------------------------------- */
+
+  /* Native <dialog> + showModal(): the focus trap, the inert background,
+     Esc-to-close and focus return all come from the browser. */
+  .lightbox {
+    width: min(94vw, 78rem);
+    max-height: 92vh;
+    padding: 0;
+    border: 0;
+    /* Tailwind's preflight zeroes margins, which removes the UA stylesheet's
+       `margin: auto` that centres a modal dialog. Putting it back is the fix. */
+    margin: auto;
+    background: transparent;
+    overflow: visible;
+  }
+
+  .lightbox::backdrop {
+    background: color-mix(in srgb, var(--color-blue) 88%, transparent);
+  }
+
+  .lightbox__img {
+    display: block;
+    max-width: 100%;
+    max-height: 92vh;
+    margin-inline: auto;
+    object-fit: contain;
+    box-shadow: 0 2rem 5rem color-mix(in srgb, #000 45%, transparent);
+  }
+
+  /* Fixed to the viewport, not the dialog. A <dialog> paints in the top layer,
+     so `fixed` here is measured against the window — which means the button
+     lands in the same corner whatever shape the photograph is. Anchoring it to
+     the dialog put it 16px ABOVE the top of the screen on a tall portrait
+     image, and 300px adrift from the image on a narrow one. */
+  .lightbox__close {
+    position: fixed;
+    top: clamp(0.75rem, 2vh, 1.5rem);
+    right: clamp(0.75rem, 2vw, 1.5rem);
+    width: 2.75rem;                      /* 44px touch target */
+    height: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* It can overlap the photograph now, so it carries its own ground rather
+       than relying on the backdrop behind it. */
+    background: color-mix(in srgb, var(--color-blue) 74%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-white) 38%, transparent);
+    border-radius: 50%;
+    color: var(--color-white);
+    cursor: pointer;
+    transition: background-color 0.3s var(--ease-conservatory),
+                border-color 0.3s var(--ease-conservatory);
+  }
+
+  .lightbox__close svg { width: 1rem; height: 1rem; }
+  .lightbox__close:hover {
+    background: color-mix(in srgb, var(--color-white) 16%, transparent);
+    border-color: var(--color-white);
+  }
+  .lightbox__close:focus-visible { outline: 2px solid var(--color-white); outline-offset: 2px; }
+
+
+
+  /* Stop the page behind scrolling while the lightbox is open. */
+  body:has(.lightbox[open]) { overflow: hidden; }
 
   /* Two hero buttons of different widths stacked on a phone read as ragged.
      Full width makes it look deliberate. */

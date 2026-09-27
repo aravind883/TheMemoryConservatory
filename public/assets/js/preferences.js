@@ -94,10 +94,10 @@ export const preferences = {
 
        Paths are relative to the site root, i.e. files inside public/. */
     imageSrcListForCarousel: [                                   // TODO:CLIENT
-      '/assets/img/hero/hero-01-bouquet-goldenhour.jpg',
-      '/assets/img/hero/hero-02-mandap-ceremony.jpg',
-      '/assets/img/hero/hero-03-veil-shore.jpg',
-      '/assets/img/hero/hero-04-confetti-exit.jpg',
+      'https://tmc-gallery.pages.dev/jayashree-x-rajesh/full/jayashree-rajesh-outdoor-145.jpg',
+      'https://tmc-gallery.pages.dev/jayashree-x-rajesh/full/jayashree-rajesh-outdoor-132.jpg',
+      'https://tmc-gallery.pages.dev/sheena-x-daniel/full/sheena-daniel-outdoor-17.jpg',
+      'https://tmc-gallery.pages.dev/nivedha-x-ajit/full/n-x-a-tmc-13.jpg',
     ],
 
     /* -------------------------------------------------------------------------
@@ -142,13 +142,17 @@ export const preferences = {
     /* How much of the grain layer is composited. 0 = off, 1 = fully present.
        Over a light hero, 0.05-0.12 is plenty. Over a heavily tinted one you
        will want much more. */
-    grainOpacity: 1,
+    /* Dialled well back from 1. The client's correction: "we shall finalise if
+       we need the grain effects on the slideshow. It doesn't look that great
+       right now." Set to 0 to switch the texture off altogether — the layer is
+       hidden entirely at 0, so nothing is left behind. */
+    grainOpacity: 0.18,
 
     /* Pushes the noise toward pure black and white, which is what actually
        makes grain look coarse rather than like a grey haze. 1 = the raw
        texture, 2-4 = progressively harsher and more filmic. This is the knob
        to turn when grainOpacity is already at 1 and it still is not enough. */
-    grainContrast: 4,
+    grainContrast: 1.6,
 
     /* How the grain combines with the image beneath it.
 

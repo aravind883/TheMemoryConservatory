@@ -18,7 +18,8 @@ npm run dev
 
 | Script | What it does |
 | --- | --- |
-| `npm run build` | Full production build (CSS + HTML) |
+| `npm run build` | Full production build (CSS + gallery + HTML) |
+| `npm run build:gallery` | Regenerate the gallery pages from `src/data/gallery.json` |
 | `npm run dev` | Build, watch and serve on port 3000 |
 | `npm run build:css` | Tailwind only |
 | `npm run build:html` | Partial expansion only |
@@ -26,6 +27,36 @@ npm run dev
 Note that a build step is required even though the site is plain HTML: Tailwind
 generates the stylesheet, so opening a file directly from disk will show
 unstyled markup. Use `npm run dev`.
+
+---
+
+## The gallery
+
+Photographs are **not** in this repo. Two web-sized copies of each are published
+to Cloudflare Pages — `thumb` (600px) for the grids, `full` (2560px) for the
+lightbox — and the originals stay on the photographer's machine.
+
+```
+tools/build-gallery.py   originals  ->  web copies + manifest
+src/data/gallery.json    every wedding and photograph, with aspect ratios
+gallery.js               that data  ->  src/pages/gallery/*.html
+```
+
+`src/pages/gallery/` is **generated and gitignored**. Edit the data file or the
+template in `gallery.js`, never the output.
+
+To add a wedding: run `tools/build-gallery.py` over the new folder, upload with
+`wrangler pages deploy`, add its entry to `src/data/gallery.json`, and rebuild.
+
+The CDN address appears once, as `baseUrl` in the data file, so changing hosts
+is a one-line edit.
+
+### Why the images are not committed
+
+The client's originals are 2.7 GB. Git keeps deleted files in history forever,
+so committing them would make the repo permanently heavy for no benefit — a
+browser should never download a 20 MB, 33 megapixel photograph. Web-sized, the
+same 659 photographs come to 357 MB, which sits on a CDN with free bandwidth.
 
 ---
 

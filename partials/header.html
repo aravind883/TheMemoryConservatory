@@ -9,24 +9,22 @@
          scrolled, on Deep Blue. public/assets/brand/wordmark-blue.png is the
          cut for light grounds. -->
     <a class="brand" href="/" aria-label="The Memory Conservatory — home">
-      <img class="brand__logo" src="/assets/brand/wordmark-cream.png"
+      <img class="brand__logo" src="/assets/brand/wordmark-blue.png"
            alt="The Memory Conservatory" width="900" height="217">
     </a>
 
     <nav class="site-nav" data-nav-active="{{active}}" aria-label="Primary">
-      <!-- The Process and Testimonials are sections of the home page, not pages
-           of their own, so they are fragment links. Written as "/#process"
-           rather than "#process" so they still work from /about, /faq and the
-           enquiry form — a bare fragment there would look for a section that
-           page does not have. -->
+      <!-- The six pages the client's corrections document retains. The Process
+           and Testimonials are sections of the home page now, not pages and not
+           nav items — the document is explicit that they "doesn't require
+           separate pages". -->
       <div class="nav-desktop">
-        <a class="nav-desktop__link" data-nav="home"         href="/">Home</a>
-        <a class="nav-desktop__link" data-nav="about"        href="/about">About</a>
-        <a class="nav-desktop__link" data-nav="gallery"      href="/gallery">Gallery</a>
-        <a class="nav-desktop__link" data-nav="process"      href="/#process">The Process</a>
-        <a class="nav-desktop__link" data-nav="testimonials" href="/#testimonials">Testimonials</a>
-        <a class="nav-desktop__link" data-nav="faq"          href="/faq">FAQ</a>
-        <a class="btn btn-outline" href="/contact">Enquire</a>
+        <a class="nav-desktop__link" data-nav="home"    href="/">Home</a>
+        <a class="nav-desktop__link" data-nav="gallery" href="/gallery">Gallery</a>
+        <a class="nav-desktop__link" data-nav="film"    href="/film-souvenirs">Film Souvenirs</a>
+        <a class="nav-desktop__link" data-nav="about"   href="/about">About Us</a>
+        <a class="nav-desktop__link" data-nav="faq"     href="/faq">FAQs</a>
+        <a class="btn btn-outline" href="/contact">Enquire Now</a>
       </div>
 
       <!-- The label is an attribute, not a child element: the bars are targeted
@@ -45,12 +43,11 @@
 <div class="nav-mobile" id="navMobile" data-open="false" aria-label="Primary" role="dialog" aria-modal="true">
   <ul class="nav-mobile__list">
     <li><a class="nav-mobile__link" href="/"><span class="nav-mobile__index">01</span>Home</a></li>
-    <li><a class="nav-mobile__link" href="/about"><span class="nav-mobile__index">02</span>About</a></li>
-    <li><a class="nav-mobile__link" href="/gallery"><span class="nav-mobile__index">03</span>Gallery</a></li>
-    <li><a class="nav-mobile__link" href="/#process"><span class="nav-mobile__index">04</span>The Process</a></li>
-    <li><a class="nav-mobile__link" href="/#testimonials"><span class="nav-mobile__index">05</span>Testimonials</a></li>
-    <li><a class="nav-mobile__link" href="/faq"><span class="nav-mobile__index">06</span>FAQ</a></li>
-    <li><a class="nav-mobile__link" href="/contact"><span class="nav-mobile__index">07</span>Enquire</a></li>
+    <li><a class="nav-mobile__link" href="/gallery"><span class="nav-mobile__index">02</span>Gallery</a></li>
+    <li><a class="nav-mobile__link" href="/film-souvenirs"><span class="nav-mobile__index">03</span>Film Souvenirs</a></li>
+    <li><a class="nav-mobile__link" href="/about"><span class="nav-mobile__index">04</span>About Us</a></li>
+    <li><a class="nav-mobile__link" href="/faq"><span class="nav-mobile__index">05</span>FAQs</a></li>
+    <li><a class="nav-mobile__link" href="/contact"><span class="nav-mobile__index">06</span>Enquire Now</a></li>
   </ul>
   <div class="nav-mobile__foot">
     <p>Chennai, Tamil Nadu &middot; available across South India and beyond</p>
